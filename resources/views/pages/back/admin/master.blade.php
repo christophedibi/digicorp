@@ -1,0 +1,7 @@
+@include('layouts/back/admin/navbar')
+@yield('style')
+@include('layouts/back/admin/sidebar')
+@include('layouts/back/admin/header')
+@yield('admin-content')
+@include('layouts/back/admin/footer')
+@yield('script')
