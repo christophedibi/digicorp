@@ -16,4 +16,22 @@ class Produit extends Model
         'prix_vente',
         'code',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            if (is_null($model->prix_revient)) {
+                $model->prix_revient = 0;
+            }
+           
+            if (is_null($model->marge)) {
+                $model->marge = 0;
+            }
+
+            $model->prix_vente = $model->prix_revient + (($model->prix_revient * $model->marge)/100);
+            
+        });
+    }
 }

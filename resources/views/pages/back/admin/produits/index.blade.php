@@ -46,8 +46,8 @@
                                                                 
                                                                 <div class="form-control-group col-auto mb-3">
                                                                     <input class="form-control" id="quantite"
-                                                                        type="text" name="quantite" placeholder="Quantite"
-                                                                         autocomplete />
+                                                                        type="text" name="quantite" placeholder="Quantite*"
+                                                                         autocomplete required />
                                                                 </div>
                                                                 <div class="form-control-group col-auto mb-3">
                                                                     <input class="form-control" id="prix_revient"
@@ -98,7 +98,7 @@
                                                             <td>{{ $produit->quantite }}</td>
                                                             <td>{{ $produit->prix_revient }}</td>
                                                             <td>{{ $produit->marge }}</td>
-                                                            <td>calcul.... </td>
+                                                            <td>{{ $produit->prix_vente }}</td>
                                                             <td>{{ date('d-m-y H:i', strtotime($produit->created_at)) }}</td>
                                                             <td>
                                                                 <form action="{{ route('produits.destroy', $produit->id) }}"

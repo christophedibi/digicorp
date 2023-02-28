@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
             $table->string('designation');
-            $table->string('quantite');            
-            $table->string('prix_revient')->nullable();
-            $table->string('marge');
-            $table->string('prix_vente')->nullable();
+            $table->integer('quantite');            
+            $table->integer('prix_revient')->nullable();
+            $table->integer('marge')->nullable();
+            $table->integer('prix_vente')->nullable();
             $table->string('code')->nullable();
             $table->timestamps();
         });
