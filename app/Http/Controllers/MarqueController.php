@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Marque as Entrepot;
+use App\Models\Marque;
 use Illuminate\Http\Request;
 
 class MarqueController extends Controller
@@ -14,7 +14,7 @@ class MarqueController extends Controller
     */
     public function index()
     {
-        $data['entrepots'] = Entrepot::paginate(5);
+        $data['marques'] = Marque::paginate(5);
         return view('pages.back.admin.produits.marques.index',$data);
     }
 
@@ -40,63 +40,61 @@ class MarqueController extends Controller
             'name' => 'required',
         ]);
         
-        Entrepot::create($request->post());
+        Marque::create($request->post());
 
-        return redirect()->route('marques.index')->with('success','Entrepot has been created successfully.');
+        return redirect()->route('marques.index')->with('success','Marque has been created successfully.');
     }
 
     /**
     * Display the specified resource.
     *
-    * @param  \App\Entrepot  $entrepot
+    * @param  \App\Marque  $marque
     * @return \Illuminate\Http\Response
     */
-    public function show(Entrepot $entrepot)
+    public function show(Marque $marque)
     {
-        return view('pages.back.admin.produits.marques.index',compact('entrepot'));
+        return view('pages.back.admin.produits.marques.index',compact('marque'));
     }
 
     /**
     * Show the form for editing the specified resource.
     *
-    * @param  \App\Entrepot  $entrepot
+    * @param  \App\Marque  $marque
     * @return \Illuminate\Http\Response
     */
-    public function edit(Entrepot $entrepot)
+    public function edit(Marque $marque)
     {
-        return view('pages.back.admin.produits.marques.edit',compact('entrepot'));
+        return view('pages.back.admin.produits.marques.edit',compact('marque'));
     }
 
     /**
     * Update the specified resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Entrepot  $entrepot
+    * @param  \App\Marque  $marque
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, Entrepot $entrepot)
+    public function update(Request $request, Marque $marque)
     {
         $request->validate([
             'name' => 'required',
-            'localisation' => 'required',
-            'contact' => 'required',
         ]);
         
-        $entrepot->fill($request->post())->save();
+        $marque->fill($request->post())->save();
 
-        return redirect()->route('marques.index')->with('success','Entrepot Has Been updated successfully');
+        return redirect()->route('marques.index')->with('success','Marque Has Been updated successfully');
     }
 
     /**
     * Remove the specified resource from storage.
     *
-    * @param  \App\Entrepot  $entrepots
+    * @param  \App\Marque  $marques
     * @return \Illuminate\Http\Response
     */
-    public function destroy(Entrepot $entrepot)
+    public function destroy(Marque $marque)
     {
-        $entrepot->delete();
-        return redirect()->route('marques.index')->with('success','Entrepot has been deleted successfully');
+        $marque->delete();
+        return redirect()->route('marques.index')->with('success','Marque has been deleted successfully');
     }
 
 }

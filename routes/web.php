@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\EntrepotController;
+use App\Http\Controllers\MarqueController;
 
 
 /*
@@ -123,6 +124,7 @@ Route::group(['prefix' => 'produits'], function()
 //     Route::delete('/delete/{id}',[\App\Http\Controllers\PrestataireController::class, 'postDelete'])->name('supprimer-prestataire');
     
         Route::resource('entrepots', EntrepotController::class);
-   
+        Route::resource('marques', MarqueController::class);
+
 }
 );
