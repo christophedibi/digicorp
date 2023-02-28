@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\EntrepotController;
 use App\Http\Controllers\MarqueController;
+use App\Http\Controllers\ProduitController;
 
 
 /*
@@ -125,6 +126,7 @@ Route::group(['prefix' => 'produits'], function()
     
         Route::resource('entrepots', EntrepotController::class);
         Route::resource('marques', MarqueController::class);
+        Route::resource('produits', ProduitController::class);
 
 }
 );

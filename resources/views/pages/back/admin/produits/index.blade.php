@@ -1,4 +1,4 @@
-@extends('pages.back.admin.master', ['titre' => 'GESTION DES marqueS'])
+@extends('pages.back.admin.master', ['titre' => 'GESTION DES PRODUITS'])
 @section('style')
     <style>
     </style>
@@ -19,7 +19,7 @@
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                                             data-bs-target="#static">
-                                            <i class="fa fa-plus"></i> Ajouter un marque
+                                            <i class="fa fa-plus"></i> Ajouter un produit
                                         </button>
                                         <!-- Creation Modal -->
                                         <div class="modal fade" id="static" data-bs-backdrop="static"
@@ -28,20 +28,36 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="staticLabel">ENREGISTREMENT D'UNE NOUVELE MARQUE</h5>
+                                                        <h5 class="modal-title" id="staticLabel">ENREGISTREMENT D'UN NOUVEAU PRODUIT</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form class="form-horizontal"
-                                                            action="{{ route('marques.store') }}" id=""
+                                                            action="{{ route('produits.store') }}" id=""
                                                             method="POST" enctype="multipart/form-data">
                                                             @csrf
                                                             <div class="form-control-group mb-4">
                                                                 <div class="form-control-group col-auto mb-3">
-                                                                    <input class="form-control" id="name"
-                                                                        type="text" name="name" placeholder="Nom *"
-                                                                        required autocomplete>
+                                                                    <input class="form-control" id="designation"
+                                                                        type="text" name="designation" placeholder="Designation *"
+                                                                        required autocomplete />
+                                                                </div>
+                                                                
+                                                                <div class="form-control-group col-auto mb-3">
+                                                                    <input class="form-control" id="quantite"
+                                                                        type="text" name="quantite" placeholder="Quantite"
+                                                                         autocomplete />
+                                                                </div>
+                                                                <div class="form-control-group col-auto mb-3">
+                                                                    <input class="form-control" id="prix_revient"
+                                                                        type="text" name="prix_revient" placeholder="Prix de Revient"
+                                                                         autocomplete />
+                                                                </div>
+                                                                <div class="form-control-group col-auto mb-3">
+                                                                    <input class="form-control" id="marge"
+                                                                        type="text" name="marge" placeholder="Marge (en %)"
+                                                                         autocomplete />
                                                                 </div>
                                                             </div>
                                                             <button type="button" class="btn btn-secondary"
@@ -60,10 +76,14 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table mb-0  table-hover display" id="tablemarques">
+                                        <table class="table mb-0  table-hover display" id="tableproduits">
                                             <thead>
                                                 <tr>
-                                                    <th>Nom</th>
+                                                    <th>Désignation</th>
+                                                    <th>Quantite</th>
+                                                    <th>Prix de revient</th>
+                                                    <th>Marge</th>
+                                                    <th>Prix de vente</th>
                                                     <th>Inscrit le</th>
                                                     <th>
                                                         Actions
@@ -71,16 +91,20 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @isset($marques)
-                                                    @foreach ($marques as $key => $marque)
+                                                @isset($produits)
+                                                    @foreach ($produits as $key => $produit)
                                                         <tr>
-                                                            <td>{{ $marque->name }}</td>
-                                                            <td>{{ date('d-m-y H:i', strtotime($marque->created_at)) }}</td>
+                                                            <td>{{ $produit->designation }}</td>
+                                                            <td>{{ $produit->quantite }}</td>
+                                                            <td>{{ $produit->prix_revient }}</td>
+                                                            <td>{{ $produit->marge }}</td>
+                                                            <td>calcul.... </td>
+                                                            <td>{{ date('d-m-y H:i', strtotime($produit->created_at)) }}</td>
                                                             <td>
-                                                                <form action="{{ route('marques.destroy', $marque->id) }}"
+                                                                <form action="{{ route('produits.destroy', $produit->id) }}"
                                                                     method="Post">
                                                                     <a class="btn btn-primary"
-                                                                        href="{{ route('marques.edit', $marque->id) }}">
+                                                                        href="{{ route('produits.edit', $produit->id) }}">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                             height="16" fill="currentColor"
                                                                             class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -104,7 +128,7 @@
                                                                     <!-- Button trigger modal -->
                                                                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                                                                         data-bs-target="#edit">
-                                                                        <i class="fa fa-plus"></i> Ajouter un marque
+                                                                        <i class="fa fa-plus"></i> Ajouter un produit
                                                                     </button>
                                                                 </div> --}}
 
@@ -131,11 +155,11 @@
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#tablemarques').DataTable();
+            $('#tableproduits').DataTable();
         });
     </script>
     <script>
-        $('#tablemarques').DataTable({
+        $('#tableproduits').DataTable({
             language: {
                 processing: "Traitement en cours...",
                 search: "Rechercher&nbsp;:",

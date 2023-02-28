@@ -40,7 +40,7 @@
                     </svg>Produits </a>
                 <ul class="collapse list-unstyled " id="produitropdownDropdown">
                   <li><a class="sidebar-link" href="{{route('entrepots.index')}}">Entreprots</a></li>
-                  <li><a class="sidebar-link" href="#">Marque</a></li>
+                  <li><a class="sidebar-link" href="{{route('marques.index')}}">Marque</a></li>
                   <li><a class="sidebar-link" href="#">Categorie</a></li>
                   <li><a class="sidebar-link" href="#">Article</a></li>
                 </ul>
