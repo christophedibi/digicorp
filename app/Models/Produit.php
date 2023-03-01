@@ -15,6 +15,9 @@ class Produit extends Model
         'marge',
         'prix_vente',
         'code',
+        'entrepot_id',
+        'categorie_id',
+        'marque_id',
     ];
 
     protected static function boot()
@@ -34,4 +37,7 @@ class Produit extends Model
             
         });
     }
+    
+
+    
 }

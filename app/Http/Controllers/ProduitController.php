@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produit;
+use App\Models\Categorie;
+use App\Models\Marque;
+use App\Models\Entrepot;
+
+
+
 use Illuminate\Http\Request;
 
 class ProduitController extends Controller
@@ -11,7 +17,11 @@ class ProduitController extends Controller
  public function index()
  {
      $data['produits'] = Produit::paginate(5);
-     return view('pages.back.admin.produits.index',$data);
+     $datas['categories'] = Categorie::Get();
+     $datas['marques'] = Marque::Get();
+     $datas['entrepots'] = Entrepot::Get();
+
+     return view('pages.back.admin.produits.index',$data,$datas);
  }
 
 

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Produit;
+
 
 class Entrepot extends Model
 {
@@ -14,4 +16,7 @@ class Entrepot extends Model
         'localisation',
         'contact',
     ];
+    public function produit(){
+        return $this->belongsTo(Produit::class);
+    }
 }

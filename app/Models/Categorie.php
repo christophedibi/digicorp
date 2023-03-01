@@ -7,16 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Produit;
 
 
-class Marque extends Model
+class Categorie extends Model
 {
     use HasFactory;
-    protected $fillable = 
-    [
+    protected $fillable = [
         'name',
+        'created_at',
+        'updated_at'
     ];
-    
     public function produit(){
         return $this->belongsTo(Produit::class);
     }
 }
-

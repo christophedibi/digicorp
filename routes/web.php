@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\EntrepotController;
 use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\CategorieController;
 
 
 /*
@@ -114,20 +115,10 @@ Route::group(['prefix' => 'prestataire'], function()
 );
 Route::group(['prefix' => 'produits'], function()
  {
-//     Route::get('/',[\App\Http\Controllers\PrestataireController::class, 'index'])->name('lister-prestataire');
-    
-//     Route::post('/create',[\App\Http\Controllers\PrestataireController::class, 'store'])->name('creer-prestataire-post');
-//     Route::get('/create',[\App\Http\Controllers\PrestataireController::class, 'getCreate'])->name('creer-prestataire');
-    
-//     Route::post('/editer/{prestataire}',[\App\Http\Controllers\PrestataireController::class, 'postEditer'])->name('editer-prestataire-post');
-//     Route::get('/editer/{prestataire}',[\App\Http\Controllers\PrestataireController::class, 'getEditer'])->name('editer-prestataire');
-    
-//     Route::delete('/delete/{id}',[\App\Http\Controllers\PrestataireController::class, 'postDelete'])->name('supprimer-prestataire');
-    
+
         Route::resource('entrepots', EntrepotController::class);
         Route::resource('marques', MarqueController::class);
         Route::resource('produits', ProduitController::class);
-        // Route::post('/myEdit',ProduitController::class,'myEdit')->name('myEdit');
-
+        Route::resource('categories', CategorieController::class);
 }
 );

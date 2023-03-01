@@ -41,7 +41,7 @@
                 <ul class="collapse list-unstyled " id="produitropdownDropdown">
                   <li><a class="sidebar-link" href="{{route('entrepots.index')}}">Entreprots</a></li>
                   <li><a class="sidebar-link" href="{{route('marques.index')}}">Marque</a></li>
-                  <li><a class="sidebar-link" href="#">Categorie</a></li>
+                  <li><a class="sidebar-link" href="{{route('categories.index')}}">Categorie</a></li>
                   <li><a class="sidebar-link" href="{{route('produits.index')}}">Article</a></li>
                 </ul>
                 </a>

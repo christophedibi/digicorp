@@ -41,7 +41,39 @@
                                                                         type="text" name="designation" placeholder="Designation *"
                                                                         required autocomplete />
                                                                 </div>
-
+                                                                <div class="form-control-group col-auto mb-3">
+                                                                    <select class="form-control select2" name="categorie_id" id="categorie" required>
+                                                                      <option selected disabled>Categorie du produit...</option>
+                                                                      @foreach($categories as $categorie)
+                                                                        <option value="{{ $categorie->id }}" >{{ $categorie->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('categorie')
+                                                                    <span class="invalid-feedback">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-control-group col-auto mb-3">
+                                                                    <select class="form-control select2" name="marque_id" id="marque" required>
+                                                                      <option selected disabled>Marque du produit...</option>
+                                                                      @foreach($marques as $marque)
+                                                                        <option value="{{ $marque->id }}" >{{ $marque->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('marque')
+                                                                    <span class="invalid-feedback">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-control-group col-auto mb-3">
+                                                                    <select class="form-control select2" name="entrepot_id" id="entrepot" required>
+                                                                      <option selected disabled>Entrepot du produit...</option>
+                                                                      @foreach($entrepots as $entrepot)
+                                                                        <option value="{{ $entrepot->id }}" >{{ $entrepot->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('entrepot')
+                                                                    <span class="invalid-feedback">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
                                                                 <div class="form-control-group col-auto mb-3">
                                                                     <input class="form-control" id="quantite"
                                                                         type="number" name="quantite" placeholder="Quantite*"
@@ -89,6 +121,7 @@
                                                     <th>Prix de revient</th>
                                                     <th>Marge</th>
                                                     <th>Prix de vente</th>
+                                                    <th>Categorie</th>
                                                     <th>Inscrit le</th>
                                                     <th>
                                                         Actions
@@ -104,6 +137,7 @@
                                                             <td>{{ $produit->prix_revient }}</td>
                                                             <td>{{ $produit->marge }}</td>
                                                             <td>{{ $produit->prix_vente }}</td>
+                                                            <td>{{ $produit->categorie_id }}</td>
                                                             <td>{{ date('d-m-y H:i', strtotime($produit->created_at)) }}</td>
                                                             <td>
                                                                 <a href="" type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
@@ -114,19 +148,6 @@
                                                                     data-bs-target="#delete{{$produit->id}}">
                                                                     <i class="fa fa-trash"></i>
                                                                 </a>
-
-                                                                {{-- <form action="{{ route('produits.destroy', $produit->id) }}"
-                                                                    method="Post">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="btn btn-danger">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                            height="16" fill="currentColor"
-                                                                            class="bi bi-trash3" viewBox="0 0 16 16">
-                                                                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-                                                                        </svg>
-                                                                    </button>
-                                                                </form>  --}}
                                                             </td>
                                                         </tr>
 
@@ -150,6 +171,39 @@
                                                                             <input class="form-control" id="designation"
                                                                                 type="text" name="designation" placeholder="Designation *"
                                                                                 required autocomplete  value="{{old('designation') ?? $produit->designation }}" />
+                                                                        </div>
+                                                                        <div class="form-control-group col-auto text-primary mb-3">
+                                                                            <select class="form-control select2 " name="categorie_id" id="categorie" required>
+                                                                              <option selected disabled>Choisissez la catégorie du produit...</option>
+                                                                              @foreach($categories as $categorie)
+                                                                                <option value="{{ $categorie->id }}" >{{ $categorie->name }}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                            @error('categorie')
+                                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                        <div class="form-control-group col-auto mb-3">
+                                                                            <select class="form-control select2" name="marque_id" id="marque" required>
+                                                                              <option selected disabled>Marque du produit...</option>
+                                                                              @foreach($marques as $marque)
+                                                                                <option value="{{ $marque->id }}" >{{ $marque->name }}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                            @error('marque')
+                                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                        <div class="form-control-group col-auto mb-3">
+                                                                            <select class="form-control select2" name="entrepot_id" id="entrepot" required>
+                                                                              <option selected disabled>Entrepot du produit...</option>
+                                                                              @foreach($entrepots as $entrepot)
+                                                                                <option value="{{ $entrepot->id }}" >{{ $entrepot->name }}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                            @error('entrepot')
+                                                                            <span class="invalid-feedback">{{ $message }}</span>
+                                                                            @enderror
                                                                         </div>
    
                                                                         <div class="form-control-group col-auto mb-3">
