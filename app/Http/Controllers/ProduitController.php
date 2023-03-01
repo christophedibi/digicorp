@@ -14,10 +14,6 @@ class ProduitController extends Controller
      return view('pages.back.admin.produits.index',$data);
  }
 
- public function create()
- {
-     return view('pages.back.admin.produits.create');
- }
 
  public function store(Request $request)
  {
@@ -31,7 +27,7 @@ class ProduitController extends Controller
      
      Produit::create($request->post());
 
-     return redirect()->route('produits.index')->with('success','Produit a été crée avec succès.');
+     return redirect()->back()->with('add-product','Produit a été crée avec succès.');
  }
 
  public function show(Produit $produit)
@@ -39,27 +35,25 @@ class ProduitController extends Controller
      return view('pages.back.admin.produits.index',compact('produit'));
  }
 
- public function edit(Produit $produit)
- {
-     return view('pages.back.admin.produits.edit',compact('produit'));
- }
 
- public function update(Request $request, Produit $produit)
+ public function update(Request $request, $id)
+
  {
-     $request->validate([
-        'designation' => 'required',
-     ]);
+     $a=Produit::findOrFail($id);
      
-     $produit->fill($request->post())->save();
+     $a->fill($request->post())->save();
 
-     return redirect()->route('produits.index')->with('success','Produit a été mis à jour avec succès');
+     
+     return redirect()->back()->with('add-product','Article mis à jour avec succès !');
+    
  }
+
 
 
  public function destroy(Produit $produit)
  {
      $produit->delete();
-     return redirect()->route('produits.index')->with('success','Produit a été supprimé avec succès');
+     return redirect()->route('produits.index')->with('add-product','Produit a été supprimé avec succès');
  }
 }
 

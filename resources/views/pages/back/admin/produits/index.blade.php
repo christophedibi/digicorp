@@ -33,9 +33,7 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="form-horizontal"
-                                                            action="{{ route('produits.store') }}" id=""
-                                                            method="POST" enctype="multipart/form-data">
+                                                        <form class="form-horizontal" action="{{ route('produits.store') }}" method="POST" enctype="multipart/form-data">
                                                             @csrf
                                                             <div class="form-control-group mb-4">
                                                                 <div class="form-control-group col-auto mb-3">
@@ -43,20 +41,20 @@
                                                                         type="text" name="designation" placeholder="Designation *"
                                                                         required autocomplete />
                                                                 </div>
-                                                                
+
                                                                 <div class="form-control-group col-auto mb-3">
                                                                     <input class="form-control" id="quantite"
-                                                                        type="text" name="quantite" placeholder="Quantite*"
+                                                                        type="number" name="quantite" placeholder="Quantite*"
                                                                          autocomplete required />
                                                                 </div>
                                                                 <div class="form-control-group col-auto mb-3">
                                                                     <input class="form-control" id="prix_revient"
-                                                                        type="text" name="prix_revient" placeholder="Prix de Revient"
+                                                                        type="number" name="prix_revient" placeholder="Prix de Revient"
                                                                          autocomplete />
                                                                 </div>
                                                                 <div class="form-control-group col-auto mb-3">
                                                                     <input class="form-control" id="marge"
-                                                                        type="text" name="marge" placeholder="Marge (en %)"
+                                                                        type="number" max="100" name="marge" placeholder="Marge (en %)"
                                                                          autocomplete />
                                                                 </div>
                                                             </div>
@@ -71,8 +69,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- End of creation modal --}}
                                     </div>
+                                </div>
+                                <div>
+                                    @if (Session::has('add-product'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{Session::get('add-product')}}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                      </div>
+                                    @endif
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -92,7 +97,7 @@
                                             </thead>
                                             <tbody>
                                                 @isset($produits)
-                                                    @foreach ($produits as $key => $produit)
+                                                    @foreach ($produits as $produit)
                                                         <tr>
                                                             <td>{{ $produit->designation }}</td>
                                                             <td>{{ $produit->quantite }}</td>
@@ -101,19 +106,17 @@
                                                             <td>{{ $produit->prix_vente }}</td>
                                                             <td>{{ date('d-m-y H:i', strtotime($produit->created_at)) }}</td>
                                                             <td>
-                                                                <form action="{{ route('produits.destroy', $produit->id) }}"
+                                                                <a href="" type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                                                    data-bs-target="#edit{{$produit->id}}">
+                                                                    <i class="fa fa-pencil"></i>
+                                                                </a>
+                                                                <a href="" type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                                                    data-bs-target="#delete{{$produit->id}}">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </a>
+
+                                                                {{-- <form action="{{ route('produits.destroy', $produit->id) }}"
                                                                     method="Post">
-                                                                    <a class="btn btn-primary"
-                                                                        href="{{ route('produits.edit', $produit->id) }}">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                            height="16" fill="currentColor"
-                                                                            class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                                            <path
-                                                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                                            <path fill-rule="evenodd"
-                                                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                                                        </svg>
-                                                                    </a>
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit" class="btn btn-danger">
@@ -123,17 +126,85 @@
                                                                             <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
                                                                         </svg>
                                                                     </button>
-                                                                </form>
-                                                                {{-- <div>
-                                                                    <!-- Button trigger modal -->
-                                                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-                                                                        data-bs-target="#edit">
-                                                                        <i class="fa fa-plus"></i> Ajouter un produit
-                                                                    </button>
-                                                                </div> --}}
-
+                                                                </form>  --}}
                                                             </td>
                                                         </tr>
+
+                                                    <!-- Edition Modal -->
+                                                    <div class="modal fade" id="edit{{$produit->id}}" data-bs-backdrop="edit"
+                                                    data-bs-keyboard="false" tabindex="-1"
+                                                    aria-hidden="true"> 
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="editLabel">Modification de {{$produit->designation}}</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form class="form-horizontal"action="{{route('produits.update', $produit->id) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('PATCH')
+                                                                    <div class="form-control-group mb-4">
+                                                                        <div class="form-control-group col-auto mb-3">
+                                                                            <input class="form-control" id="designation"
+                                                                                type="text" name="designation" placeholder="Designation *"
+                                                                                required autocomplete  value="{{old('designation') ?? $produit->designation }}" />
+                                                                        </div>
+   
+                                                                        <div class="form-control-group col-auto mb-3">
+                                                                            <input class="form-control" id="quantite"
+                                                                                type="number" name="quantite" placeholder="Quantite*"
+                                                                                autocomplete required  value="{{old('quantite') ?? $produit->quantite }}" />
+                                                                        </div>
+                                                                        <div class="form-control-group col-auto mb-3">
+                                                                            <input class="form-control" id="prix_revient"
+                                                                                type="number" name="prix_revient" placeholder="Prix de Revient"
+                                                                                autocomplete  value="{{old('prix_revient') ?? $produit->prix_revient }}"  />
+                                                                        </div>
+                                                                        <div class="form-control-group col-auto mb-3">
+                                                                            <input class="form-control" id="marge"
+                                                                                type="number" name="marge" placeholder="Marge (en %)"
+                                                                                autocomplete max="100"  value="{{old('marge') ?? $produit->marge }}"  />
+                                                                        </div>
+                                                                    </div>
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Fermer</button>
+                                                                    <button class="btn btn-success" type="submit"> Enregistrer</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- End of creation modal --}}
+                                                <!-- Suppression Modal -->
+                                                <div class="modal fade" id="delete{{$produit->id}}" data-bs-backdrop="static"
+                                                    data-bs-keyboard="false" tabindex="-1"
+                                                    aria-hidden="true"> 
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="deleteLabel">Demande de confirmation</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Voulez-vous vraiment supprimer le produit <strong class="text-danger">{{$produit->designation}}</strong>?
+                                                                    
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                                                <form action="{{ route('produits.destroy', $produit->id) }}"
+                                                                        method="Post">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                    <button type="submit" class="btn btn-primary">Confirmer</button>
+                                                                </form> 
+                                                              </div>                                                        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- End of creation modal --}}
                                                     @endforeach
                                                 @endisset
                                             </tbody>
@@ -147,6 +218,7 @@
             </div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>

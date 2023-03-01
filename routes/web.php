@@ -127,6 +127,7 @@ Route::group(['prefix' => 'produits'], function()
         Route::resource('entrepots', EntrepotController::class);
         Route::resource('marques', MarqueController::class);
         Route::resource('produits', ProduitController::class);
+        // Route::post('/myEdit',ProduitController::class,'myEdit')->name('myEdit');
 
 }
 );
