@@ -12,6 +12,12 @@ class MarqueSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $marque = new \App\Models\Marque();
+        $marque -> name = "IPHONE";
+        $marque -> save();
+
+        $marque = new \App\Models\Marque();
+        $marque -> name = "SAMSUNG";
+        $marque -> save();
     }
 }

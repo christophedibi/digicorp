@@ -692,6 +692,7 @@ class ComposerStaticInitc936565eab71101cc640d960491e27b6
         'Database\\Seeders\\ContactEntrepriseFournisseurSeeder' => __DIR__ . '/../..' . '/database/seeders/ContactEntrepriseFournisseurSeeder.php',
         'Database\\Seeders\\ContactEntreprisePrestataireSeeder' => __DIR__ . '/../..' . '/database/seeders/ContactEntreprisePrestataireSeeder.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\EntrepotSeeder' => __DIR__ . '/../..' . '/database/seeders/EntrepotSeeder.php',
         'Database\\Seeders\\FournisseurSeeder' => __DIR__ . '/../..' . '/database/seeders/FournisseurSeeder.php',
         'Database\\Seeders\\MarqueSeeder' => __DIR__ . '/../..' . '/database/seeders/MarqueSeeder.php',
         'Database\\Seeders\\PrestataireSeeder' => __DIR__ . '/../..' . '/database/seeders/PrestataireSeeder.php',

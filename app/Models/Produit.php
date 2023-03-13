@@ -37,7 +37,10 @@ class Produit extends Model
             
         });
     }
-    
+    public function proformas()
+    {
+        return $this->belongsToMany(Proforma::class)->withPivot('quantite', 'produit_id');
+    }
 
     
 }

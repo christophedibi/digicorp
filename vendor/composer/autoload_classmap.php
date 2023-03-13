@@ -171,6 +171,7 @@ return array(
     'Database\\Seeders\\ContactEntrepriseFournisseurSeeder' => $baseDir . '/database/seeders/ContactEntrepriseFournisseurSeeder.php',
     'Database\\Seeders\\ContactEntreprisePrestataireSeeder' => $baseDir . '/database/seeders/ContactEntreprisePrestataireSeeder.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
+    'Database\\Seeders\\EntrepotSeeder' => $baseDir . '/database/seeders/EntrepotSeeder.php',
     'Database\\Seeders\\FournisseurSeeder' => $baseDir . '/database/seeders/FournisseurSeeder.php',
     'Database\\Seeders\\MarqueSeeder' => $baseDir . '/database/seeders/MarqueSeeder.php',
     'Database\\Seeders\\PrestataireSeeder' => $baseDir . '/database/seeders/PrestataireSeeder.php',

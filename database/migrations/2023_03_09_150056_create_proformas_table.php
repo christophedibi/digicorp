@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('proformas', function (Blueprint $table) {
             $table->id();
-            $table->string('total_unitaire'); //calculer en fonction de la quantite sur chaque produits
-            $table->string('total_ht');
-            $table->string('quantite');
-            $table->string('total_ttc');
+            $table->string('customer_name'); 
+            $table->string('customer_email'); 
+            // $table->string('quantite');
+            // $table->string('total_unitaire'); //calculer en fonction de la quantite sur chaque produits
+            // $table->string('total_ht');
+            // $table->string('total_ttc');
 
             // 'quantite',
             // 'prix_unitaire',

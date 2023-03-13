@@ -12,6 +12,12 @@ class CategorieSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $categorie = new \App\Models\Categorie();
+        $categorie -> name = "MOBILES";
+        $categorie -> save();
+
+        $categorie = new \App\Models\Categorie();
+        $categorie -> name = "APPAREILS";
+        $categorie -> save();
     }
 }

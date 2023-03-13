@@ -22,13 +22,36 @@ class ProformaController extends Controller
    
     public function store(Request $request)
     {
+        $request->validate([
+            'customer_name' => 'required',
+            'customer_email' => 'required',
+            'produit_id' => 'required|array',
+            'quantite' => 'required|array',
+        ]);
+        
+        
+        Proforma::create($request->post());
+
         dd($request);
-        // $request->validate([
-        //     'designation' => 'required',
-        // ]);
+        // $proforma = new Proforma;
+        //  $proforma->customer_name = $request->customer_name;
+        //  $proforma->customer_email = $request->customer_email;
+        // //  $proforma->produit_id = $request['produit_id'];
+        //  $proforma->quantite = $request['quantite'];
+        // $proforma->produit_id = json_encode($request['produit_id']);
+        // $proforma->quantite = json_encode($request['quantite']);
+        // $produits = [];
+        // for ($i = 0; $i < count($request->produit_id); $i++) {
+        //     $produits[$request->produit_id[$i]] = ['quantite' => $request->quantite[$i]];
+        // }
+
+        // $proforma->produits()->sync($produits);
+        // $proforma->save();
         
-        
-        // Produit::create($request->post());
+        // // $prix_unitaires = $request->input('prix_unitaires', []);
+
+
+        // Proforma::create($request->post());
    
         // return redirect()->back()->with('message','Produit a été crée avec succès.');
     }

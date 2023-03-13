@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Proforma extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
         'quantite',
         'prix_unitaire',
@@ -17,4 +18,9 @@ class Proforma extends Model
         'produit_id',
         'total',
     ];
+
+    public function produits()
+    {
+        return $this->belongsToMany(Produit::class)->withPivot('quantite', 'produit_id');
+    }
 }
