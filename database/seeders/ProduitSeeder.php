@@ -16,10 +16,9 @@ class ProduitSeeder extends Seeder
         $produit = new \App\Models\Produit();
         $produit -> designation = "SAMSUNG A 80";
         $produit -> quantite = 500;
-        $produit -> prix_reviens = 275000;
+        $produit -> prix_revient = 275000;
         $produit -> marge = 20;
         $produit -> prix_vente = 330000;
-
         $produit -> entrepot_id = 1;
         $produit -> marque_id = 2;
         $produit -> categorie_id = 1;
@@ -28,7 +27,7 @@ class ProduitSeeder extends Seeder
         $produit = new \App\Models\Produit();
         $produit -> designation = "Iphone 7 Plus";
         $produit -> quantite = 124;
-        $produit -> prix_reviens = 75000;
+        $produit -> prix_revient = 75000;
         $produit -> marge = 20;
         $produit -> prix_vente = 90000;
 

@@ -23,4 +23,20 @@ class Proforma extends Model
     {
         return $this->belongsToMany(Produit::class)->withPivot('quantite', 'produit_id');
     }
+    public function getProduitsInfo($produitIds)
+{
+    $produits = Produit::whereIn('id', $produitIds)->get();
+    $produitsInfo = [];
+    foreach ($produits as $produit) {
+        $produitsInfo[] = [
+            'id' => $produit->id,
+            'designation' => $produit->designation,
+            'prix_vente' => $produit->prix_vente,
+            'quantite' => $produit->quantite,
+            // Ajoutez d'autres informations de produit que vous souhaitez récupérer
+        ];
+    }
+    return $produitsInfo;
+}
+
 }

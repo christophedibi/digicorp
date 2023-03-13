@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('prix_revient')->nullable();
             $table->integer('marge')->nullable();
             $table->integer('prix_vente')->nullable();
-            $table->string('code')->nullable();
+            // $table->string('code')->nullable();
             $table->timestamps();
         });
     }

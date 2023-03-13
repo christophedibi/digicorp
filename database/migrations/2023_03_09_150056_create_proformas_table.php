@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('customer_name'); 
             $table->string('customer_email'); 
-            // $table->string('quantite');
+            $table->string('quantite');
+            $table->string('prix_unitaire');
+
             // $table->string('total_unitaire'); //calculer en fonction de la quantite sur chaque produits
             // $table->string('total_ht');
             // $table->string('total_ttc');

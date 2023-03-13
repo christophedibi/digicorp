@@ -25,35 +25,22 @@ class ProformaController extends Controller
         $request->validate([
             'customer_name' => 'required',
             'customer_email' => 'required',
-            'produit_id' => 'required|array',
             'quantite' => 'required|array',
         ]);
         
         
-        Proforma::create($request->post());
-
-        dd($request);
-        // $proforma = new Proforma;
-        //  $proforma->customer_name = $request->customer_name;
-        //  $proforma->customer_email = $request->customer_email;
-        // //  $proforma->produit_id = $request['produit_id'];
-        //  $proforma->quantite = $request['quantite'];
-        // $proforma->produit_id = json_encode($request['produit_id']);
-        // $proforma->quantite = json_encode($request['quantite']);
-        // $produits = [];
-        // for ($i = 0; $i < count($request->produit_id); $i++) {
-        //     $produits[$request->produit_id[$i]] = ['quantite' => $request->quantite[$i]];
-        // }
-
-        // $proforma->produits()->sync($produits);
-        // $proforma->save();
         
-        // // $prix_unitaires = $request->input('prix_unitaires', []);
-
-
-        // Proforma::create($request->post());
+        $proforma = new Proforma;
+        $proforma->customer_name = $request->customer_name;
+        $proforma->customer_email = $request->customer_email;
+        $proforma->quantite = json_encode($request['quantite']);
+        $proforma->prix_unitaire = json_encode($request['prix_vente']);
+        $proforma->produits = json_encode($request['produits']);
+        $proforma->save();
+        
+        return redirect()->back()->with('message','Produit a été crée avec succès.');
+        
    
-        // return redirect()->back()->with('message','Produit a été crée avec succès.');
     }
    
     public function show(Proforma $proforma)

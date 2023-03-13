@@ -166,13 +166,12 @@
             <tr>
             <div class="form-group row">
                 <div class="w-75">
-                    <select class="form-control select2" name="produit_id[]" id="produit" required>
+                    <select class="form-control select2" name="produits[]" id="produit" required>
                             <option selected disabled>
                                 Produits...
                             </option>
                             @foreach ($produits as $produit)
-                                <option
-                                    value="{{ $produit->id }}">
+                                <option value="{{ $produit->id }}">
                                     <span>
                                         {{ $produit->designation }}
                                     </span>
