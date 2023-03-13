@@ -5,6 +5,7 @@ use App\Http\Controllers\EntrepotController;
 use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ProformaController;
 
 
 /*
@@ -120,5 +121,6 @@ Route::group(['prefix' => 'produits'], function()
         Route::resource('marques', MarqueController::class);
         Route::resource('produits', ProduitController::class);
         Route::resource('categories', CategorieController::class);
+        Route::resource('proformas', ProformaController::class);
 }
 );

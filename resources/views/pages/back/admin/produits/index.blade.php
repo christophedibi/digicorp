@@ -21,6 +21,16 @@
                                             data-bs-target="#static">
                                             <i class="fa fa-plus"></i> Ajouter un produit
                                         </button>
+
+                                        <!-- Entrepots -->
+                                        <a type="button" class="btn btn-outline-primary" style="margin-left: 20px" href="{{route('entrepots.index')}}">
+                                            <i class="fa fa-plus"></i> Acceder aux entrepots
+                                        </a>
+
+                                        <!-- Catégories -->
+                                        <a type="button" class="btn btn-outline-primary" style="margin-left: 20px" href="{{route('categories.index')}}">
+                                            <i class="fa fa-plus"></i> Acceder aux Catégories
+                                        </a>
                                         <!-- Creation Modal -->
                                         <div class="modal fade" id="static" data-bs-backdrop="static"
                                             data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel"
@@ -142,7 +152,7 @@
                                                             <td>
                                                                 <a href="" type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                                                                     data-bs-target="#edit{{$produit->id}}">
-                                                                    <i class="fa fa-pencil"></i>
+                                                                   <i class="fa fa-pencil"></i>
                                                                 </a>
                                                                 <a href="" type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                                                                     data-bs-target="#delete{{$produit->id}}">

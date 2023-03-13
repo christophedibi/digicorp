@@ -1,6 +1,6 @@
 @extends('pages.back.admin.master', ['titre' => 'GESTION DES ENTREPOTS'])
 @section('style')
-    <style>
+    <style>w
     </style>
 @endsection
 @section('admin-content')
