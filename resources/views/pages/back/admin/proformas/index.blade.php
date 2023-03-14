@@ -148,9 +148,10 @@
     
 
         function hello(){
-            var tr = document.querySelector('option');
-            var prix_vente = tr.dataset.prix_vente;
+            var prix = document.getElementById('produit');
+            var prix_vente = prix.dataset.prix_vente;
             console.log(prix_vente);
+
             // let produitSelectionne = document.getElementById(produit);
             // console.log(produitSelectionne);
         }
